@@ -1,0 +1,25 @@
+{
+  "name": "integrate_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "test:integration": "./scripts/run-integration.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "@types/express": "^5.0.0",
+    "express": "^4.21.2",
+    "prisma": "^6.5.0",
+    "vitest": "^3.0.8"
+  },
+  "devDependencies": {
+    "@types/supertest": "^6.0.2",
+    "supertest": "^7.0.0"
+  }
+}
