@@ -17,6 +17,6 @@ jobs:
         - name: check
           run: ls
         - name: Add .env
-          run: cp ./e2e/.env.example ./e2e/.env
+          run: cp .env.example .env
         - name: Run integration script
           run: cd e2e npm test:integration
