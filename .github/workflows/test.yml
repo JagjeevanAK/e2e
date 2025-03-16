@@ -15,8 +15,8 @@ jobs:
         - name: Setup docker-compose
           uses: docker/setup-qemu-action@v2
         - name: check
-          run: ls
+          run:  ls
         - name: Add .env
-          run: cp .env.example .env
+          run:  cp .env.example .env
         - name: Run integration script
-          run: cd e2e npm test:integration
+          run:  npm test:integration
