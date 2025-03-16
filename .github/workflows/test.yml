@@ -19,4 +19,4 @@ jobs:
         - name: Add .env
           run:  cp .env.example .env
         - name: Run integration script
-          run:  npm test:integration
+          run:  npm run test:integration
