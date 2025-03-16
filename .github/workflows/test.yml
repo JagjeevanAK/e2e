@@ -17,4 +17,4 @@ jobs:
         - name: Add .env
           run: cp ./e2e/.env.example ./e2e/.env
         - name: Run integration script
-          run: npm test:integration
+          run: cd e2e npm test:integration
