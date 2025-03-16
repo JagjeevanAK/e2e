@@ -15,7 +15,6 @@ describe("POST/sum",()=>{
         console.log("clearing DB");
         await resetDb();
     })
-
     it("It should add 2 +1", async()=>{
         const { status, body } = await request(app).post('/sum').send({
             a: 2,
