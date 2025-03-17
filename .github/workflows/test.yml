@@ -6,7 +6,6 @@ on:
         - main
 
 jobs:
- jobs:
   filter:
     name: "Filter changed paths"
     runs-on: ubuntu-latest
