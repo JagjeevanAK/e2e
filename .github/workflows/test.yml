@@ -22,7 +22,7 @@ jobs:
 
       - name: Filter non-markdown and non-docs files
         id: filter
-        run: ./.github/scripts/filter.sh "${{ steps.changed_files.outputs.all_changed_files }}"
+        run: ./.github/scripts/path-filter.sh "${{ steps.changed_files.outputs.all_changed_files }}"
             
 
   integration_tests:
