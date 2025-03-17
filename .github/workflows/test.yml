@@ -6,8 +6,29 @@ on:
         - main
 
 jobs:
+  # FIXME: not used yet
+  filter:
+    name: "Filter changed paths"
+    runs-on: ubuntu-latest
+    outputs:
+      code_modified: ${{ steps.filter.outputs.code }}
+    steps:
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          # FIXME: we need to consider more than these files
+          # We need to consider every file in the repository and have it in a category
+          # Maybe using negative match: https://github.com/micromatch/picomatch?tab=readme-ov-file#advanced-globbing
+          filters: |
+            code:
+            - '**/*'       # Catch everything else
+            - '!**/*.md'   # Exclude all Markdown files
+            - '!docs/**'   # Exclude docs/ folder
+
   integration_tests:
     runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.code_modified == 'true'
     steps:
         - uses: actions/checkout@v2
         - name: Setup docker 
