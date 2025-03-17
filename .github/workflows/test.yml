@@ -13,7 +13,7 @@ jobs:
     outputs:
       code: ${{ steps.filter.outputs.code }}
     steps:
-      - uses: dorny/paths-filter@v3
+      - uses: jagjeevanak/path-filter@v1
         id: filter
         with:
           filters: |
