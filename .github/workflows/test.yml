@@ -6,21 +6,31 @@ on:
         - main
 
 jobs:
-  # FIXME: not used yet
+ jobs:
   filter:
     name: "Filter changed paths"
     runs-on: ubuntu-latest
     outputs:
-      code: ${{ steps.filter.outputs.code }}
+      code_modified: ${{ steps.filter.outputs.code_modified }}
+
     steps:
-      - uses: jagjeevanak/path-filter@v1
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get changed files
+        uses: tj-actions/changed-files@v39
+        id: changed_files
+
+      - name: Filter non-markdown and non-docs files
         id: filter
-        with:
-          filters: |
-            code:
-            - '**/*'
-            - '!**/*.md'   # Exclude all Markdown files
-            - '!docs/**'   # Exclude docs/ folder
+        run: |
+          CODE_FILES=$(echo "${{ steps.changed_files.outputs.all_changed_files }}" | grep -E -v '\.md$|^docs/')
+          if [ -n "$CODE_FILES" ]; then
+            echo "code_modified=true" >> $GITHUB_OUTPUT
+          else
+            echo "code_modified=false" >> $GITHUB_OUTPUT
+          fi
+
             
 
   integration_tests:
