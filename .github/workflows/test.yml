@@ -22,13 +22,7 @@ jobs:
 
       - name: Filter non-markdown and non-docs files
         id: filter
-        run: |
-          CODE_FILES=$(echo "${{ steps.changed_files.outputs.all_changed_files }}" | grep -E -v '\.md$|^docs/')
-          if [ -n "$CODE_FILES" ]; then
-            echo "code_modified=true" >> $GITHUB_OUTPUT
-          else
-            echo "code_modified=false" >> $GITHUB_OUTPUT
-          fi
+        run: ./scripts/filter.sh "${{ steps.changed_files.outputs.all_changed_files }}"
 
             
 
