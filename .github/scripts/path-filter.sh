@@ -1,9 +1,12 @@
 #!/bin/bash
 
-# Filter non-markdown and non-docs files
-CODE_FILES=$(echo "$1" | grep -E -v '\.md$|^docs/')
-if [ -n "$CODE_FILES" ]; then
-  echo "code_modified=true" >> "$GITHUB_OUTPUT"
-else
-  echo "code_modified=false" >> "$GITHUB_OUTPUT"
-fi
+# Check each changed file
+for file in $@; do
+  if ! echo "$file" | grep -E -q '\.md$|^docs/'; then
+    echo "code_modified=true" >> "$GITHUB_OUTPUT"
+    exit 0
+  fi
+done
+
+# If only Markdown or docs files are changed
+echo "code_modified=false" >> "$GITHUB_OUTPUT"
