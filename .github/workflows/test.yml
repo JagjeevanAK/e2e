@@ -23,7 +23,7 @@ jobs:
             code:
             - '!**/*.md'   # Exclude all Markdown files
             - '!docs/**'   # Exclude docs/ folder
-            - '**/*'       # Catch everything else
+            
 
   integration_tests:
     runs-on: ubuntu-latest
@@ -31,7 +31,6 @@ jobs:
     if: needs.filter.outputs.code_modified == 'true'
     steps:
         - uses: actions/checkout@v2
-        - run: needs.filter.outputs.code_modified
         - name: Setup docker 
           uses: docker/setup-buildx-action@v2
         - name: Setup docker-compose
