@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+# set -e
 
 # Filter non-markdown and non-docs files
 CODE_FILES=$(echo "$1" | grep -E -v '\.md$|^docs/')
