@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+ set -e
+
 # Check each changed file
 for file in $@; do
   if ! echo "$file" | grep -E -q '\.md$|^docs/'; then
