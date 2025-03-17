@@ -19,12 +19,16 @@ jobs:
       - name: Get changed files
         uses: tj-actions/changed-files@v39
         id: changed_files
-      - run: ls
 
       - name: Filter non-markdown and non-docs files
         id: filter
-        run: ./.github/scripts/path-filter.sh "${{ steps.changed_files.outputs.all_changed_files }}"
-
+        run: |
+          CODE_FILES=$(echo "${{ steps.changed_files.outputs.all_changed_files }}" | grep -E -v '\.md$|^docs/')
+          if [ -n "$CODE_FILES" ]; then
+            echo "code_modified=true" >> $GITHUB_OUTPUT
+          else
+            echo "code_modified=false" >> $GITHUB_OUTPUT
+          fi
             
 
   integration_tests:
