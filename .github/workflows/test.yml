@@ -19,8 +19,10 @@ jobs:
           # FIXME: we need to consider more than these files
           # We need to consider every file in the repository and have it in a category
           # Maybe using negative match: https://github.com/micromatch/picomatch?tab=readme-ov-file#advanced-globbing
+          base: ${{ github.ref }}
           filters: |
             code:
+            - '**/*'
             - '!**/*.md'   # Exclude all Markdown files
             - '!docs/**'   # Exclude docs/ folder
             
